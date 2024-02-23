@@ -1,10 +1,9 @@
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
 
 import { Card } from '@/components/card/Card'
 import { Button } from '@/components/ui/button'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox'
-import { Input } from '@/components/ui/input/Input'
+import { ControlledTextField } from '@/components/ui/input/Controlled-input'
 import { Typography } from '@/components/ui/typography/Typography'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -46,8 +45,14 @@ export const SignIn = (props: Props) => {
         </Typography>
         <form onSubmit={handleFormSubmitted}>
           <div className={s.form}>
-            <Input label={'Email'} name={'email'} placeholder={'Email'} />
-            <Input
+            <ControlledTextField
+              control={control}
+              label={'Email'}
+              name={'email'}
+              placeholder={'Email'}
+            />
+            <ControlledTextField
+              control={control}
               label={'Password'}
               name={'password'}
               placeholder={'Password'}
@@ -60,12 +65,7 @@ export const SignIn = (props: Props) => {
             name={'rememberMe'}
             position={'left'}
           />
-          <Typography
-            as={Link}
-            className={s.recoverPasswordLink}
-            to={'/recover-password'}
-            variant={'body2'}
-          >
+          <Typography className={s.recoverPasswordLink} variant={'body2'}>
             Forgot Password?
           </Typography>
           <Button className={s.button} fullWidth type={'submit'}>
@@ -75,7 +75,7 @@ export const SignIn = (props: Props) => {
         <Typography className={s.caption} variant={'body2'}>
           {`Don't have an account?`}
         </Typography>
-        <Typography as={Link} className={s.signUpLink} to={'/sign-up'} variant={'link1'}>
+        <Typography className={s.signUpLink} variant={'link1'}>
           Sign Up
         </Typography>
       </Card>

@@ -1,38 +1,62 @@
-import * as RadioGroup from '@radix-ui/react-radio-group'
+import * as React from 'react'
 
-const RadioGroupDemo = () => (
-  <form>
-    <RadioGroup.Root
-      aria-label={'View density'}
-      className={'RadioGroupRoot'}
-      defaultValue={'default'}
-    >
-      <div style={{ alignItems: 'center', display: 'flex' }}>
-        <RadioGroup.Item className={'RadioGroupItem'} id={'r1'} value={'default'}>
-          <RadioGroup.Indicator className={'RadioGroupIndicator'} />
-        </RadioGroup.Item>
-        <label className={'Label'} htmlFor={'r1'}>
-          Default
-        </label>
-      </div>
-      <div style={{ alignItems: 'center', display: 'flex' }}>
-        <RadioGroup.Item className={'RadioGroupItem'} id={'r2'} value={'comfortable'}>
-          <RadioGroup.Indicator className={'RadioGroupIndicator'} />
-        </RadioGroup.Item>
-        <label className={'Label'} htmlFor={'r2'}>
-          Comfortable
-        </label>
-      </div>
-      <div style={{ alignItems: 'center', display: 'flex' }}>
-        <RadioGroup.Item className={'RadioGroupItem'} id={'r3'} value={'compact'}>
-          <RadioGroup.Indicator className={'RadioGroupIndicator'} />
-        </RadioGroup.Item>
-        <label className={'Label'} htmlFor={'r3'}>
-          Compact
-        </label>
-      </div>
-    </RadioGroup.Root>
-  </form>
-)
+import { Typography } from '@/components/ui/typography/Typography'
+import * as RadioGroupPrimitive from '@radix-ui/react-radio-group'
+import { clsx } from 'clsx'
 
-export default RadioGroupDemo
+import s from './radio.module.scss'
+
+const RadioGroupRoot = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
+>(({ className, ...props }, ref) => {
+  return <RadioGroupPrimitive.Root className={clsx(s.root, className)} {...props} ref={ref} />
+})
+
+RadioGroupRoot.displayName = RadioGroupPrimitive.Root.displayName
+
+const RadioGroupItem = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>
+>(({ children, className, ...props }, ref) => {
+  return (
+    <RadioGroupPrimitive.Item className={clsx(s.option, className)} ref={ref} {...props}>
+      <div className={s.icon}></div>
+    </RadioGroupPrimitive.Item>
+  )
+})
+
+RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName
+
+type Option = {
+  label: string
+  value: string
+}
+export type RadioGroupProps = Omit<
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>,
+  'children'
+> & {
+  errorMessage?: string
+  options: Option[]
+}
+const RadioGroup = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Root>,
+  RadioGroupProps
+>((props, ref) => {
+  const { errorMessage, options, ...restProps } = props
+
+  return (
+    <RadioGroupRoot {...restProps} ref={ref}>
+      {options.map(option => (
+        <div className={s.label} key={option.value}>
+          <RadioGroupItem id={option.value} value={option.value} />
+          <Typography as={'label'} htmlFor={option.value} variant={'body2'}>
+            {option.label}
+          </Typography>
+        </div>
+      ))}
+    </RadioGroupRoot>
+  )
+})
+
+export { RadioGroup, RadioGroupItem, RadioGroupRoot }
