@@ -38,6 +38,9 @@ dependencies:
   react-hook-form:
     specifier: ^7.50.1
     version: 7.50.1(react@18.2.0)
+  remeda:
+    specifier: ^1.44.1
+    version: 1.44.1
   zod:
     specifier: ^3.22.4
     version: 3.22.4
@@ -8872,6 +8875,10 @@ packages:
       mdast-util-to-string: 1.1.0
       unist-util-visit: 2.0.3
     dev: true
+
+  /remeda@1.44.1:
+    resolution: {integrity: sha512-IzUxPZbhLIq7duT2xEjLD5s+lA+J5Qq12dDmgmW8PsQAKsCU5rdydTZEYiiklgg53Lo363/q99dOxq4hnsaJ7A==}
+    dev: false
 
   /require-from-string@2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
