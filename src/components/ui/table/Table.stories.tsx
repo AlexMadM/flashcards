@@ -1,15 +1,7 @@
-import { Typography } from '@/components/ui/typography/Typography'
+import { Typography } from '@/components'
 import { Meta } from '@storybook/react'
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableEmpty,
-  TableHead,
-  TableHeadCell,
-  TableRow,
-} from './Table'
+import { Table, TableBody, TableCell, TableEmpty, TableHead, TableHeadCell, TableRow } from './'
 
 export default {
   component: Table,

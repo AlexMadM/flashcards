@@ -1,19 +1,37 @@
 import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
+import { clsx } from 'clsx'
+
 import s from './typography.module.scss'
 
-export type TypographyProps<T extends ElementType> = {
+export interface TextProps<T extends ElementType> {
   as?: T
-  children: ReactNode
-  variant?: string
-} & ComponentPropsWithoutRef<T>
+  children?: ReactNode
+  className?: string
+  variant?:
+    | 'body1'
+    | 'body2'
+    | 'caption'
+    | 'error'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'large'
+    | 'link1'
+    | 'link2'
+    | 'overline'
+    | 'subtitle1'
+    | 'subtitle2'
+}
 
-export const Typography = <T extends ElementType = 'h1'>(props: TypographyProps<T>) => {
-  const { as: Component = 'p', children, variant = 'h1', ...restProps } = props
+export function Typography<T extends ElementType = 'p'>({
+  as,
+  className,
+  variant = 'body1',
+  ...restProps
+}: TextProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>>) {
+  const classNames = clsx(s.text, s[variant], className)
+  const Component = as || 'p'
 
-  return (
-    <Component className={`${s[variant]}`} {...restProps}>
-      {children}
-    </Component>
-  )
+  return <Component className={classNames} {...restProps} />
 }

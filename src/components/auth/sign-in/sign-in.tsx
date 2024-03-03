@@ -1,15 +1,13 @@
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
-import { Card } from '@/components/card/Card'
-import { Button } from '@/components/ui/button'
-import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox'
-import { ControlledTextField } from '@/components/ui/input/Controlled-input'
-import { Typography } from '@/components/ui/typography/Typography'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import s from './sign-in.module.scss'
+
+import { Button, Card, ControlledCheckbox, ControlledTextField, Typography } from '../../ui'
 
 const schema = z.object({
   email: z.string().email('Invalid email address').nonempty('Enter email'),
@@ -60,12 +58,18 @@ export const SignIn = (props: Props) => {
             />
           </div>
           <ControlledCheckbox
+            className={s.checkbox}
             control={control}
             label={'Remember me'}
             name={'rememberMe'}
             position={'left'}
           />
-          <Typography className={s.recoverPasswordLink} variant={'body2'}>
+          <Typography
+            as={Link}
+            className={s.recoverPasswordLink}
+            to={'/recover-password'}
+            variant={'body2'}
+          >
             Forgot Password?
           </Typography>
           <Button className={s.button} fullWidth type={'submit'}>
@@ -75,7 +79,7 @@ export const SignIn = (props: Props) => {
         <Typography className={s.caption} variant={'body2'}>
           {`Don't have an account?`}
         </Typography>
-        <Typography className={s.signUpLink} variant={'link1'}>
+        <Typography as={Link} className={s.signUpLink} to={'/sign-up'} variant={'link1'}>
           Sign Up
         </Typography>
       </Card>

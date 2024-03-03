@@ -12,12 +12,37 @@ html {
   box-sizing: border-box;
 }
 
+button {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  color: inherit;
+  user-select: none;
+  box-sizing: border-box;
+
+  &:focus-visible {
+    outline: var(--outline-focus);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+}
+
 input,
-button,
 select,
 textarea,
 optgroup,
 option {
+  box-sizing: border-box;
+
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -25,8 +50,15 @@ option {
   color: inherit;
 }
 
+a,
 a:visited {
-  color: inherit;
+  display: flex;
+  color: currentcolor;
+
+  &:focus-visible {
+    outline: var(--outline-focus);
+    outline-offset: 2px;
+  }
 }
 
 body {

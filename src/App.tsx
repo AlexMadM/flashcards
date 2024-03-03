@@ -1,14 +1,12 @@
-import { Input } from '@/components/ui/input/Input'
-import { Typography } from '@/components/ui/typography/Typography'
+import { Provider } from 'react-redux'
+
+import { Router } from '@/router'
+import { store } from '@/services/store'
 
 export function App() {
   return (
-    <div>
-      <Typography as={'h1'} variant={'link2'}>
-        LKSDFJSLKDFJSDLKFJSDLKFJSDLKFJSLKFJ
-      </Typography>
-
-      <Input />
-    </div>
+    <Provider store={store}>
+      <Router />
+    </Provider>
   )
 }
