@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { RefCallBack } from 'react-hook-form'
 
 import { Check } from '@/assets/icons'
 import { Typography } from '@/components'
@@ -17,7 +16,6 @@ export type CheckboxProps = {
   label?: string
   onChange?: (checked: boolean) => void
   position?: 'left'
-  ref: RefCallBack
   required?: boolean
 }
 
