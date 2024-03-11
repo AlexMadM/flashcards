@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { RefCallBack } from 'react-hook-form'
 
 import { Check } from '@/assets/icons'
 import { Typography } from '@/components'
@@ -16,6 +17,7 @@ export type CheckboxProps = {
   label?: string
   onChange?: (checked: boolean) => void
   position?: 'left'
+  ref: RefCallBack
   required?: boolean
 }
 
@@ -28,6 +30,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   onChange,
   position,
   required,
+  ...rest
 }) => {
   const classNames = {
     buttonWrapper: clsx(s.buttonWrapper, disabled && s.disabled, position === 'left' && s.left),
@@ -48,6 +51,7 @@ export const Checkbox: FC<CheckboxProps> = ({
               disabled={disabled}
               id={id}
               onCheckedChange={onChange}
+              {...rest}
               required={required}
             >
               {checked && (
