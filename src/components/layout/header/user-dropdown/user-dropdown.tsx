@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 import { Logout, PersonOutline } from '@/assets'
 import { Avatar } from '@/components/ui/avatar'
-import { Typography } from '@/components/ui/typography/Typography'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +10,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@radix-ui/react-dropdown-menu'
+} from '@/components/ui/dropdown'
+import { Typography } from '@/components/ui/typography/Typography'
 
 import s from './user-dropdown.module.scss'
 
